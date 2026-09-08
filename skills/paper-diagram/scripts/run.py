@@ -17,6 +17,8 @@ env = dict(os.environ)
 env['PYTHONPATH'] = str(root / 'src') + (os.pathsep + env['PYTHONPATH'] if env.get('PYTHONPATH') else '')
 if len(sys.argv)>1 and sys.argv[1]=='scene':
     command=[python,str(root/'experiments'/'export_reviewed_scene.py'),*sys.argv[2:]]
+elif len(sys.argv)>1 and sys.argv[1]=='live':
+    command=[python, '-m', 'cell_local.live', *sys.argv[2:]]
 else:
     command=[python, '-m', 'cell_local', *sys.argv[1:]]
 raise SystemExit(subprocess.call(command, env=env))

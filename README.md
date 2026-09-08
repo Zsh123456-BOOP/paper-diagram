@@ -78,6 +78,28 @@ python3 -m venv "$HOME/.codex/skills/paper-diagram/runtime/.venv"
 - 原生路径可以编辑，但不是会自动吸附和重连的 PowerPoint 智能连接线。SVG/PPTX 导出支持的是明确的子集，不支持的效果应报出或显式近似。
 - SVG 可在 Illustrator 中继续编辑；本项目不提供原生 AI/PSD 导出，也不要求安装 Adobe。检查 PPTX 最终外观需要 PowerPoint、LibreOffice 等可用渲染器，字体需由使用者提供。
 
+## PowerPoint 实时绘制（实验模式）
+
+现在可以让对象在 **PowerPoint 编辑窗口内逐步创建**，用于观看或录屏：
+
+```text
+使用 $paper-diagram 复刻这张图，并在 PowerPoint 中实时绘制，方便我录屏。
+```
+
+Agent 先编写和检查场景，再生成可读的 VBA 模块。PowerPoint 执行创建形状、文字、自由曲线和分组的命令，持续刷新画布。它不会预先放入完成图再通过动画揭示。
+
+已有 Scene 可以直接生成绘图模块：
+
+```sh
+python skills/paper-diagram/scripts/run.py live path/to/scene.json --output-dir path/to/new-live-run --interval 0.2
+```
+
+在 PowerPoint 的 VBA 编辑器中导入生成的 `PaperDiagramLive.bas`，返回编辑窗口，通过「工具 → 宏」运行 `PaperDiagramDraw`。它会新建输出文稿。还提供开始、下一步、继续与暂停入口。[完整操作与支持范围](skills/paper-diagram/references/live-powerpoint.md)。
+
+已在 Mac PowerPoint 实测一个含 **50 个原生形状（其中 19 个文本对象）、16 个分组、17 段三次曲线、8 个箭头、0 个图片对象** 的小图，观察到中间绘制状态并检查了保存结果。[可复现的小图脚本](examples/native-live/make_demo.py)。Windows VBA 使用同一原生对象模型，但本次未实机验证。
+
+此模式目前支持常见几何与单轮廓曲线，复杂渐变、复合孔洞、任意虚线、图片与部分文字效果会明确拒绝；这类图继续用普通导出模式。**录屏、加速剪辑和完整参考图复刻的端到端演示尚未集成。**
+
 ## 开发与验证
 
 ```sh
@@ -89,7 +111,7 @@ python3 -m venv .venv
 
 [SKILL.md](skills/paper-diagram/SKILL.md) 是 Agent 的入口；[便携 Scene 说明](skills/paper-diagram/references/portable-scenes.md)介绍构图和导出；[参考图证据说明](skills/paper-diagram/references/reference-evidence.md)介绍冻结、比较与文件绑定。内部 Python 包名 `cell_local` 与旧命令别名保留，便于兼容已有工具。
 
-录屏用的逐步绘制演示尚未实现，后续再设计。
+实时绘制使用当前 PowerPoint 的正常宏执行入口，不需要启用“信任 VBA 工程访问”，也不要求降低全局宏安全设置。
 
 ## 开源许可与来源
 

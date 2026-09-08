@@ -55,6 +55,11 @@ content instead of claiming faithful completion.
 
 ## Run
 
+For an explicit request to draw live inside PowerPoint or record the drawing
+process, read [native live drawing](references/live-powerpoint.md). This optional
+mode creates native objects through VBA in a new PowerPoint document. Check its
+supported subset before choosing it; do not reduce reference fidelity for a video.
+
 For named components and portable native PPTX export, read [portable scenes](references/portable-scenes.md). Keep each matrix cell and its value in a group while leaving neighboring cells independent. Use same-color compound contours only inside explicitly named appearance assets, never across unrelated semantic objects.
 
 `scripts/run.py` resolves the project environment and launches the local CLI. Use the Python executable available in the current environment:
