@@ -1,0 +1,30 @@
+{
+  "description": "User-supplied comparison images and PowerPoint outputs; one historical example, not a controlled benchmark.",
+  "image_order": [
+    "01-with-paper-diagram.png",
+    "02-without-paper-diagram.png",
+    "03-reference.png"
+  ],
+  "files": [
+    {
+      "file": "without-paper-diagram.pptx",
+      "method": "Generic Presentations skill and artifact-tool; no cell-local",
+      "sha256": "342cd586bd808787ed39664d2d962a562bd69bfdca496bbbd37745526b1f52ac",
+      "native_shapes": 285,
+      "text_objects": 76,
+      "pictures": 4,
+      "groups": 0,
+      "sanitization": "Removed document author metadata and speaker-note text; slide XML and media unchanged."
+    },
+    {
+      "file": "with-paper-diagram.pptx",
+      "method": "cell-local predecessor of Paper Diagram",
+      "sha256": "864625eac74a08df14bba2587540acad5dc2c66784f3e5ee04bfe2e453c16cd6",
+      "native_shapes": 280,
+      "text_objects": 111,
+      "pictures": 0,
+      "groups": 92,
+      "sanitization": "Removed document author metadata and speaker-note text; slide XML and media unchanged."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Diagram"
+  short_description: "忠实复刻参考图，保留文字、轮廓和连线，输出可编辑 SVG 与 PPTX"
+  default_prompt: "使用 $paper-diagram 帮我复刻这张图，保留原图细节并输出可编辑 SVG、PPTX 和对照预览。"

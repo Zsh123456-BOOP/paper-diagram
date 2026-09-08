@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paper-diagram"
+version = "0.1.0"
+description = "Local scientific figure vectorization and editable PowerPoint export. No API key."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+  "Pillow>=10,<13",
+  "vtracer==0.6.15",
+  "fonttools==4.61.1",
+  "python-pptx==1.0.2",
+]
+
+[project.optional-dependencies]
+preview = ["CairoSVG==2.8.2", "numpy>=1.24,<3"]
+structure = ["numpy>=1.24,<3", "scikit-image==0.25.2"]
+
+qa = ["numpy>=1.24,<3", "scipy>=1.10,<2", "pypdfium2>=4.30,<6"]
+
+[project.scripts]
+paper-diagram = "cell_local.cli:main"
+cell-local = "cell_local.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cell_local = ["_vendor/cell_su7/*.py", "_vendor/cell_su7/LICENSE*", "_vendor/cell_su7/*.md"]
